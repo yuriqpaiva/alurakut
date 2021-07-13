@@ -4,20 +4,12 @@ import Box from '../src/components/Box'
 import { AlurakutMenu, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons'
 import { Fragment } from 'react'
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
+import { ProfileSidebar } from '../src/components/ProfileSidebar'
 
 // const Title = styled.h1`
 //   font-size: 50px;
 //   color: ${({ theme }) => theme.colors.primary};
 // `
-
-function ProfileSidebar(props) {
-  console.log(props)
-  return (
-    <Box>
-      <img src={`https://github.com/${props.githubUser}.png`} style={{ borderRadius: '8px' }}></img>
-    </Box>
-  )
-}
 
 export default function Home() {
   const githubUser = 'yuriqpaiva'
