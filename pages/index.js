@@ -44,11 +44,16 @@ export default function Home() {
           <Box>
             <h2 className='subTitle'>O que você deseja fazer?</h2>
             <form onSubmit={function handleCriarComunidade(e) {
+              let random = Math.floor(Math.random() * (200 - 10)) + 10
               const dadosDoForm = new FormData(e.target) // Dados do Form
+              if (dadosDoForm.get('image') === '') {
+                dadosDoForm.set('image', `https://picsum.photos/id/${random}/200/300`) 
+              }
               const comunidade = {
                 id: new Date().toISOString(),
-                titulo: dadosDoForm.get('title'),
-                image: dadosDoForm.get('image')
+                title: dadosDoForm.get('title'),
+                image: dadosDoForm.get('image'),
+                link: dadosDoForm.get('link')
               }
               e.preventDefault()
               const comunidadesAtualizadas = [...comunidades, comunidade]
@@ -64,9 +69,16 @@ export default function Home() {
               </div>
               <div>
                 <input
-                  placeholder='Coloque uma URL para usarmos de capa'
+                  placeholder='Insira uma URL para usarmos de capa'
                   name='image'
-                  aria-label='Coloque uma URL para usarmos de capa'
+                  aria-label='Insira uma URL para usarmos de capa'
+                />
+              </div>
+              <div>
+                <input
+                  placeholder='Insira a URL da sua comunidade'
+                  name='linkComunidade'
+                  aria-label='Insira a URL da sua comunidade'
                 />
               </div>
               <button>
