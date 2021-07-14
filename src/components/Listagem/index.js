@@ -20,7 +20,7 @@ export function Listagem(props) {
                     if (typeof itemAtual === 'object' && index < 6) {
                         return (
                             <li key={itemAtual.id}>
-                                <a href={`/users/${itemAtual.title}`}>
+                                <a href={itemAtual.link} target="_blank">
                                     <img src={itemAtual.image}></img>
                                     <span>{itemAtual.title}</span>
                                 </a>

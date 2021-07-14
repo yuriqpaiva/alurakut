@@ -53,7 +53,7 @@ export default function Home() {
                 id: new Date().toISOString(),
                 title: dadosDoForm.get('title'),
                 image: dadosDoForm.get('image'),
-                link: dadosDoForm.get('link')
+                link: dadosDoForm.get('linkComunidade')
               }
               e.preventDefault()
               const comunidadesAtualizadas = [...comunidades, comunidade]
@@ -69,9 +69,9 @@ export default function Home() {
               </div>
               <div>
                 <input
-                  placeholder='Insira uma URL para usarmos de capa'
+                  placeholder='Insira uma URL de imagem para usarmos como capa'
                   name='image'
-                  aria-label='Insira uma URL para usarmos de capa'
+                  aria-label='Insira uma URL de imagem para usarmos como capa'
                 />
               </div>
               <div>
