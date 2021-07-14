@@ -7,15 +7,11 @@ import { Fragment } from 'react'
 import { ProfileSidebar } from '../src/components/ProfileSidebar'
 import { FormularioComunidade } from '../src/components/FormularioComunidade'
 import { Listagem } from '../src/components/Listagem'
+import { comunidadesArray } from '../src/assets/comunidadesArray'
 
 export default function Home() {
   const githubUser = 'yuriqpaiva'
-  const [comunidades, setComunidades] = React.useState([{
-    id: '21312872734728387492',
-    title: 'Eu odeio acordar cedo',
-    image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg'
-  }])
-  console.log(comunidades)
+  const [comunidades, setComunidades] = React.useState(comunidadesArray)
   // const comunidades = ['Alurakut']
   const pessoasFavoritas = [
     'juunegreiros',
@@ -27,9 +23,20 @@ export default function Home() {
     'felipealves'
   ]
 
+  const [seguidores, setSeguidores]  = React.useState([])
+  // 0 - Pegar o array de dados do GitHub
+  React.useEffect(function () {
+    fetch('https://api.github.com/users/yuriqpaiva/followers')
+      .then((respostaDoServidor) => respostaDoServidor.json())
+      .then((respostaCompleta) => setSeguidores(respostaCompleta))
+  }, [])
+
+  // 1 - Criar um box que vai ter um map, baseado nos itens do array
+  // que pegamos do GitHub
+
   return (
     <Fragment>
-      <AlurakutMenu githubUser={githubUser}/>
+      <AlurakutMenu githubUser={githubUser} />
       <MainGrid >
         <div className='profileArea' style={{ gridArea: 'profileArea' }}>
           <ProfileSidebar githubUser={githubUser} as="aside" />
@@ -47,7 +54,7 @@ export default function Home() {
               let random = Math.floor(Math.random() * (200 - 10)) + 10
               const dadosDoForm = new FormData(e.target) // Dados do Form
               if (dadosDoForm.get('image') === '') {
-                dadosDoForm.set('image', `https://picsum.photos/id/${random}/200/300`) 
+                dadosDoForm.set('image', `https://picsum.photos/id/${random}/200/300`)
               }
               const comunidade = {
                 id: new Date().toISOString(),
@@ -88,8 +95,9 @@ export default function Home() {
           </Box>
         </div>
         <div className='profileRelationsArea' style={{ gridArea: 'profileRelationsArea' }}>
-          <Listagem title={'Comunidades'} array={comunidades}/>
-          <Listagem title={'Pessoas da Comunidade'} array={pessoasFavoritas}/>
+          <Listagem title={'Seguidores'} array={seguidores} />
+          <Listagem title={'Comunidades'} array={comunidades} />
+          <Listagem title={'Pessoas da Comunidade'} array={pessoasFavoritas} />
         </div>
       </MainGrid>
     </Fragment>
