@@ -1,5 +1,5 @@
 1 - Componentizar a lista de Comunidades e Amigos, passando como props o
-    título e o Array a ser percorrido pelo Map
+    título e o Array a ser percorrido pelo Map - Concluído!
 
 2 - Não deixar a lista de Amigos e Comunidades passar de 6 elementos
 

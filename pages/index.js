@@ -4,8 +4,9 @@ import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
 import { AlurakutMenu, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons'
 import { Fragment } from 'react'
-import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
 import { ProfileSidebar } from '../src/components/ProfileSidebar'
+import { FormularioComunidade } from '../src/components/FormularioComunidade'
+import { Listagem } from '../src/components/Listagem'
 
 export default function Home() {
   const githubUser = 'yuriqpaiva'
@@ -30,7 +31,7 @@ export default function Home() {
       <AlurakutMenu />
       <MainGrid >
         <div className='profileArea' style={{ gridArea: 'profileArea' }}>
-          <ProfileSidebar githubUser={githubUser} as="aside"/>
+          <ProfileSidebar githubUser={githubUser} as="aside" />
         </div>
         <div className='welcomeArea' style={{ gridArea: 'welcomeArea' }}>
           <Box>
@@ -43,7 +44,6 @@ export default function Home() {
             <h2 className='subTitle'>O que você deseja fazer?</h2>
             <form onSubmit={function handleCriarComunidade(e) {
               const dadosDoForm = new FormData(e.target) // Dados do Form
-
               const comunidade = {
                 id: new Date().toISOString(),
                 titulo: dadosDoForm.get('title'),
@@ -52,7 +52,6 @@ export default function Home() {
               e.preventDefault()
               const comunidadesAtualizadas = [...comunidades, comunidade]
               setComunidades(comunidadesAtualizadas)
-              console.log(comunidades)
             }}>
               <div>
                 <input
@@ -76,40 +75,8 @@ export default function Home() {
           </Box>
         </div>
         <div className='profileRelationsArea' style={{ gridArea: 'profileRelationsArea' }}>
-          <ProfileRelationsBoxWrapper>
-            <h2>Comunidades</h2>
-            {/* Map retorna itens! Por isso não pode ser usado forEach */}
-            <ul>
-              {comunidades.map((itemAtual) => {
-                return (
-                  <li key={itemAtual.id}>
-                    <a href={`/users/${itemAtual.title}`}>
-                      <img src={itemAtual.image}></img>
-                      <span>{itemAtual.title}</span>
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </ProfileRelationsBoxWrapper>
-          <ProfileRelationsBoxWrapper>
-            <h2 className='smallTitle'>
-              Pessoas da comunidade ({pessoasFavoritas.length})
-            </h2>
-            {/* Map retorna itens! Por isso não pode ser usado forEach */}
-            <ul>
-              {pessoasFavoritas.map((itemAtual) => {
-                return (
-                  <li key={itemAtual}>
-                    <a href={`/users/${itemAtual}`} key={itemAtual}>
-                      <img src={`http://github.com/${itemAtual}.png`}></img>
-                      <span>{itemAtual}</span>
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </ProfileRelationsBoxWrapper>
+          <Listagem title={'Comunidades'} array={comunidades}/>
+          <Listagem title={'Pessoas da Comunidade'} array={pessoasFavoritas}/>
         </div>
       </MainGrid>
     </Fragment>
