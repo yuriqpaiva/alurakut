@@ -1,5 +1,3 @@
-1 - Componentizar a lista de Comunidades e Amigos, passando como props o
-    título e o Array a ser percorrido pelo Map - Concluído!
+1- Personalizar o Background e Cores do Menu
 
-2 - Não deixar a lista de Amigos e Comunidades passar de 6 elementos
-
+2 - Deixar o README.md do projeto muito mais bonito!
