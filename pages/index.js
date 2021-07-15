@@ -26,7 +26,7 @@ export default function Home() {
   const [seguidores, setSeguidores] = React.useState([])
   // 0 - Pegar o array de dados do GitHub
   React.useEffect(function () {
-    fetch('https://api.github.com/users/peas/followers')
+    fetch(`https://api.github.com/users/${githubUser}/followers`)
       .then((respostaDoServidor) => respostaDoServidor.json())
       .then((respostaCompleta) => {
         setSeguidores(respostaCompleta)
@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <Fragment>
       <AlurakutMenu githubUser={githubUser} />
-      <MainGrid >
+      <MainGrid>
         <div className='profileArea' style={{ gridArea: 'profileArea' }}>
           <ProfileSidebar githubUser={githubUser} as="aside" />
         </div>
