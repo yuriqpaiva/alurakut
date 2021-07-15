@@ -52,12 +52,12 @@ export default function Home() {
         } 
       }` })
     })
-    .then((response) => response.json())
-    .then((respostaCompleta) => {
-      const comunidadesVindasDoDato = respostaCompleta.data.allCommunities
-      console.log(respostaCompleta)
-      setComunidades(comunidadesVindasDoDato)
-    })
+      .then((response) => response.json())
+      .then((respostaCompleta) => {
+        const comunidadesVindasDoDato = respostaCompleta.data.allCommunities
+        console.log(respostaCompleta)
+        setComunidades(comunidadesVindasDoDato)
+      })
   }, [])
 
   // 1 - Criar um box que vai ter um map, baseado nos itens do array
@@ -80,21 +80,30 @@ export default function Home() {
           <Box>
             <h2 className='subTitle'>O que você deseja fazer?</h2>
             <form onSubmit={function handleCriarComunidade(e) {
+              e.preventDefault()
               let random = Math.floor(Math.random() * (200 - 10)) + 10
               const dadosDoForm = new FormData(e.target) // Dados do Form
               if (dadosDoForm.get('image') === '') {
                 dadosDoForm.set('image', `https://picsum.photos/id/${random}/200/300`)
               }
               const comunidade = {
-                id: new Date().toISOString(),
                 title: dadosDoForm.get('title'),
-                image: dadosDoForm.get('image'),
-                link: dadosDoForm.get('linkComunidade')
+                imageUrl: dadosDoForm.get('image'),
+                creatorSlug: githubUser
               }
-              e.preventDefault()
-              const comunidadesAtualizadas = [...comunidades, comunidade]
-              setComunidades(comunidadesAtualizadas)
-              console.log(comunidades)
+              fetch('/api/comunidades', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(comunidade)
+              })
+                .then(async (response) => {
+                  const dados = await response.json()
+                  const comunidade = dados.registroCriado
+                  const comunidadesAtualizadas = [...comunidades, comunidade]
+                  setComunidades(comunidadesAtualizadas)
+                })
             }}>
               <div>
                 <input
