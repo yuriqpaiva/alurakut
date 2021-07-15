@@ -7,7 +7,7 @@ import { Fragment } from 'react'
 import { ProfileSidebar } from '../src/components/ProfileSidebar'
 import { FormularioComunidade } from '../src/components/FormularioComunidade'
 import { Listagem } from '../src/components/Listagem'
-import { comunidadesArray } from '../src/assets/comunidadesArray'
+import { comunidadesArray } from '../src/assets/dados/comunidadesArray'
 
 export default function Home() {
   const githubUser = 'yuriqpaiva'
@@ -23,12 +23,15 @@ export default function Home() {
     'felipealves'
   ]
 
-  const [seguidores, setSeguidores]  = React.useState([])
+  const [seguidores, setSeguidores] = React.useState([])
   // 0 - Pegar o array de dados do GitHub
   React.useEffect(function () {
-    fetch('https://api.github.com/users/yuriqpaiva/followers')
+    fetch('https://api.github.com/users/peas/followers')
       .then((respostaDoServidor) => respostaDoServidor.json())
-      .then((respostaCompleta) => setSeguidores(respostaCompleta))
+      .then((respostaCompleta) => {
+        setSeguidores(respostaCompleta)
+        console.log(seguidores)
+      })
   }, [])
 
   // 1 - Criar um box que vai ter um map, baseado nos itens do array
@@ -65,6 +68,7 @@ export default function Home() {
               e.preventDefault()
               const comunidadesAtualizadas = [...comunidades, comunidade]
               setComunidades(comunidadesAtualizadas)
+              console.log(comunidades)
             }}>
               <div>
                 <input
