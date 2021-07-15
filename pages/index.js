@@ -84,7 +84,7 @@ export default function Home() {
             <OrkutNostalgicIconSet />
           </Box>
           <Box>
-            <h2 className='subTitle'>O que você deseja fazer?</h2>
+            <h2 className='subTitle'>Adicionar Comunidade</h2>
             <form onSubmit={function handleCriarComunidade(e) {
               e.preventDefault()
               let random = Math.floor(Math.random() * (200 - 10)) + 10
