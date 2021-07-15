@@ -120,13 +120,13 @@ export default function Home() {
                   aria-label='Insira uma URL de imagem para usarmos como capa'
                 />
               </div>
-              <div>
+              {/* <div>
                 <input
                   placeholder='Insira a URL da sua comunidade'
                   name='linkComunidade'
                   aria-label='Insira a URL da sua comunidade'
                 />
-              </div>
+              </div> */}
               <button>
                 Criar comunidade
               </button>
