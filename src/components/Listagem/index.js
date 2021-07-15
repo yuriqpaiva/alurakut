@@ -16,11 +16,11 @@ export function Listagem(props) {
             {/* Map retorna itens! Por isso não pode ser usado forEach */}
             <ul>
                 {props.array.map((itemAtual, index) => {
-                    if (typeof itemAtual === 'object' && index < 6 && itemAtual.image) {
+                    if (typeof itemAtual === 'object' && index < 6 && itemAtual.creatorSlug) {
                         return (
                             <li key={itemAtual.id}>
-                                <a href={itemAtual.link} target="_blank">
-                                    <img src={itemAtual.image}></img>
+                                <a href={`/communities/${itemAtual.id}`} target="_blank">
+                                    <img src={itemAtual.imageUrl}></img>
                                     <span>{itemAtual.title}</span>
                                 </a>
                             </li>

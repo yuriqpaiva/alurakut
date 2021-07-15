@@ -11,7 +11,7 @@ import { comunidadesArray } from '../src/assets/dados/comunidadesArray'
 
 export default function Home() {
   const githubUser = 'yuriqpaiva'
-  const [comunidades, setComunidades] = React.useState(comunidadesArray)
+  const [comunidades, setComunidades] = React.useState([])
   // const comunidades = ['Alurakut']
   const pessoasFavoritas = [
     'juunegreiros',
@@ -26,12 +26,38 @@ export default function Home() {
   const [seguidores, setSeguidores] = React.useState([])
   // 0 - Pegar o array de dados do GitHub
   React.useEffect(function () {
+    // GET
     fetch(`https://api.github.com/users/${githubUser}/followers`)
       .then((respostaDoServidor) => respostaDoServidor.json())
       .then((respostaCompleta) => {
         setSeguidores(respostaCompleta)
         console.log(seguidores)
       })
+
+    // API GraphQL
+    fetch(`https://graphql.datocms.com/`, {
+      method: 'POST',
+      headers: {
+        'Authorization': '1dd555e102993f65efed1f903a2744',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        "query": `query { 
+        allCommunities {
+          id
+          title
+          imageUrl
+          creatorSlug
+        } 
+      }` })
+    })
+    .then((response) => response.json())
+    .then((respostaCompleta) => {
+      const comunidadesVindasDoDato = respostaCompleta.data.allCommunities
+      console.log(respostaCompleta)
+      setComunidades(comunidadesVindasDoDato)
+    })
   }, [])
 
   // 1 - Criar um box que vai ter um map, baseado nos itens do array
