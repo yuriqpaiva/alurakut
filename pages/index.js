@@ -22,7 +22,7 @@ export default function Home() {
     'felipefialho',
     'felipealves'
   ]
-
+  const [seguindo, setSeguindo] = React.useState([])
   const [seguidores, setSeguidores] = React.useState([])
   // 0 - Pegar o array de dados do GitHub
   React.useEffect(function () {
@@ -31,8 +31,14 @@ export default function Home() {
       .then((respostaDoServidor) => respostaDoServidor.json())
       .then((respostaCompleta) => {
         setSeguidores(respostaCompleta)
-        console.log(seguidores)
       })
+
+    fetch(`https://api.github.com/users/${githubUser}/following`)
+      .then((respostaDoServidor) => respostaDoServidor.json())
+      .then((respostaCompleta) => {
+        setSeguindo(respostaCompleta)
+      })
+
 
     // API GraphQL
     fetch(`https://graphql.datocms.com/`, {
@@ -135,8 +141,8 @@ export default function Home() {
         </div>
         <div className='profileRelationsArea' style={{ gridArea: 'profileRelationsArea' }}>
           <Listagem title={'Seguidores'} array={seguidores} />
+          <Listagem title={'Seguindo'} array={seguindo} />
           <Listagem title={'Comunidades'} array={comunidades} />
-          <Listagem title={'Pessoas da Comunidade'} array={pessoasFavoritas} />
         </div>
       </MainGrid>
     </Fragment>

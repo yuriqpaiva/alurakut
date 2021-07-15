@@ -25,7 +25,9 @@ export function Listagem(props) {
                                 </a>
                             </li>
                         )
-                    } else if (typeof itemAtual === 'string' && index < 6) {
+                    }
+                    /* 
+                    else if (typeof itemAtual === 'string' && index < 6) {
                         return (
                             <li key={itemAtual}>
                                 <a href={`https://github.com/${itemAtual}`} target='_blank'>
@@ -35,14 +37,16 @@ export function Listagem(props) {
                             </li>
 
                         )
-                    } else if (index < 6) {
-                        return(
-                        <li key={index}>
-                            <a href={`https://github.com/${itemAtual.login}`} target="_blank">
-                                <img src={`http://github.com/${itemAtual.login}.png`}></img>
-                                <span>{itemAtual.login}</span>
-                            </a>
-                        </li>
+                    } 
+                    */
+                    else if (index < 6) {
+                        return (
+                            <li key={index}>
+                                <a href={`https://github.com/${itemAtual.login}`} target="_blank">
+                                    <img src={`http://github.com/${itemAtual.login}.png`}></img>
+                                    <span>{itemAtual.login}</span>
+                                </a>
+                            </li>
                         )
                     }
                 })
