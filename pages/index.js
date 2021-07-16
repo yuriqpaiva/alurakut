@@ -1,4 +1,6 @@
 import React from 'react'
+import nookies from 'nookies'
+import jwt from 'jsonwebtoken'
 import styled from 'styled-components'
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
@@ -9,8 +11,8 @@ import { FormularioComunidade } from '../src/components/FormularioComunidade'
 import { Listagem } from '../src/components/Listagem'
 import { comunidadesArray } from '../src/assets/dados/comunidadesArray'
 
-export default function Home() {
-  const githubUser = 'yuriqpaiva'
+export default function Home(props) {
+  const githubUser = props.githubUser
   const [comunidades, setComunidades] = React.useState([])
   // const comunidades = ['Alurakut']
   const pessoasFavoritas = [
@@ -39,7 +41,6 @@ export default function Home() {
         setSeguindo(respostaCompleta)
       })
 
-
     // API GraphQL
     fetch(`https://graphql.datocms.com/`, {
       method: 'POST',
@@ -61,7 +62,7 @@ export default function Home() {
       .then((response) => response.json())
       .then((respostaCompleta) => {
         const comunidadesVindasDoDato = respostaCompleta.data.allCommunities
-        console.log(respostaCompleta)
+        // console.log(respostaCompleta)
         setComunidades(comunidadesVindasDoDato)
       })
   }, [])
@@ -147,4 +148,35 @@ export default function Home() {
       </MainGrid>
     </Fragment>
   )
+}
+
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  const token = cookies.USER_TOKEN
+  
+  console.log('Token decodificado', jwt.decode(token))
+
+  const { isAuthenticated } = await fetch('http://alurakut.vercel.app/api/auth', {
+    headers: {
+      Authorization: token
+    }
+  })
+    .then((response) => response.json())
+  console.log(isAuthenticated)
+
+  if (!isAuthenticated) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false
+      }
+    }
+  }
+
+  const { githubUser } = jwt.decode(token)
+  return {
+    props: {
+      githubUser
+    }, // will be passed to the page component as props
+  }
 }
