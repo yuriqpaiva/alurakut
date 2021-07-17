@@ -1,5 +1,7 @@
 import { Fragment } from 'react'
 import { ProfileRelationsBoxWrapper } from '../ProfileRelations'
+import React from 'react'
+import router from 'next/router'
 
 export function Listagem(props) {
 
@@ -13,6 +15,7 @@ export function Listagem(props) {
     return (
         <ProfileRelationsBoxWrapper>
             <h2 className='smallTitle'>{`${props.title} (${props.array.length})`}</h2>
+            <hr/>
             {/* Map retorna itens! Por isso não pode ser usado forEach */}
             <ul>
                 {props.array.map((itemAtual, index) => {
@@ -26,23 +29,12 @@ export function Listagem(props) {
                             </li>
                         )
                     }
-                    /* 
-                    else if (typeof itemAtual === 'string' && index < 6) {
-                        return (
-                            <li key={itemAtual}>
-                                <a href={`https://github.com/${itemAtual}`} target='_blank'>
-                                    <img src={`http://github.com/${itemAtual}.png`}></img>
-                                    <span>{itemAtual}</span>
-                                </a>
-                            </li>
-
-                        )
-                    } 
-                    */
                     else if (index < 6) {
                         return (
                             <li key={index}>
-                                <a href={`https://github.com/${itemAtual.login}`} target="_blank">
+                                <a onClick={() => {
+                                    props.setGithubUser(itemAtual.login)
+                                }} target="_blank">
                                     <img src={`http://github.com/${itemAtual.login}.png`}></img>
                                     <span>{itemAtual.login}</span>
                                 </a>

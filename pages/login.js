@@ -3,10 +3,10 @@ import React from 'react';
 import { useRouter } from 'next/router'
 import nookies from 'nookies'
 
-export default function LoginScreen() {
+export default function LoginScreen(props) {
     const router = useRouter()
     const [githubUser, setGithubUser] = React.useState([])
-
+    const menssagem = false
     return (
         <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <div className="loginScreen">
@@ -19,11 +19,12 @@ export default function LoginScreen() {
                 </section>
 
                 <section className="formArea">
-                    <form className="box" onSubmit={(infosDoEvento) => {
+                    <form className="box" onSubmit={async (infosDoEvento) => {
+                        var token
                         infosDoEvento.preventDefault() // Tirar o comportamento padrão do navegador de atualizar a página ao clicar para submeter, garantindo o comportamento de SPA. 
                         console.log('Usuário: ', githubUser)
 
-                        fetch('https://alurakut.vercel.app/api/login', {
+                        const algo = await fetch('https://alurakut.vercel.app/api/login', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -32,7 +33,7 @@ export default function LoginScreen() {
                         })
                             .then(async (response) => {
                                 const dadosResponse = await response.json()
-                                const token = dadosResponse.token
+                                token = dadosResponse.token
                                 nookies.set(null, 'USER_TOKEN', token, {
                                     path: '/',
                                     maxAge: 86400 * 7
@@ -52,11 +53,14 @@ export default function LoginScreen() {
                                 setGithubUser(evento.target.value)
                             }}
                         />
-                        {
-                            githubUser.length === 0
-                                ? 'Preencha o campo'
-                                : ''
-                        }
+                        <p className='avisoPreencher'>
+                            {
+                                githubUser.length === 0
+                                    ? 'Preencha o campo acima'
+                                    : ''
+                            }
+                        </p>
+                        
                         <button type="submit">
                             Login
                         </button>

@@ -3,9 +3,11 @@ import styled from "styled-components";
 const Box = styled.div`
   background: #ffff;
   border-radius: 8px;
-  padding: 16px;
+  padding: 14px;
   margin-bottom: 10px;
-    
+  border: 3px solid #5FE0F9;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  
   /* CSS Pré-Pronto */  
   .boxLink {
     font-size: 14px;
@@ -54,7 +56,7 @@ const Box = styled.div`
     padding: 8px 12px;
     color: #FFFFFF;
     border-radius: 10000px;
-    background-color: #6F92BB;
+    background-color: #0B0101;
   }
 `;
 

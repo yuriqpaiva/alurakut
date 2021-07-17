@@ -10,9 +10,11 @@ import { ProfileSidebar } from '../src/components/ProfileSidebar'
 import { FormularioComunidade } from '../src/components/FormularioComunidade'
 import { Listagem } from '../src/components/Listagem'
 import { comunidadesArray } from '../src/assets/dados/comunidadesArray'
+import router from 'next/router'
+import { destroyCookie } from 'nookies'
 
 export default function Home(props) {
-  const githubUser = props.githubUser
+  const [githubUser, setGithubUser] = React.useState([props.githubUser])
   const [comunidades, setComunidades] = React.useState([])
   // const comunidades = ['Alurakut']
   const pessoasFavoritas = [
@@ -108,7 +110,7 @@ export default function Home(props) {
                 .then(async (response) => {
                   const dados = await response.json()
                   const comunidade = dados.registroCriado
-                  const comunidadesAtualizadas = [...comunidades, comunidade]
+                  const comunidadesAtualizadas = [comunidade, ...comunidades]
                   setComunidades(comunidadesAtualizadas)
                 })
             }}>
@@ -141,8 +143,9 @@ export default function Home(props) {
           </Box>
         </div>
         <div className='profileRelationsArea' style={{ gridArea: 'profileRelationsArea' }}>
-          <Listagem title={'Seguidores'} array={seguidores} />
-          <Listagem title={'Seguindo'} array={seguindo} />
+          <Listagem title={'Seguidores'} array={seguidores} setGithubUser={setGithubUser} setSeguidores={setSeguidores}/>
+          <Listagem title={'Seguindo'} array={seguindo} setGithubUser={setGithubUser} setSeguindo={setSeguindo.bind(this)}
+          seguindo={seguindo}/>
           <Listagem title={'Comunidades'} array={comunidades} />
         </div>
       </MainGrid>
@@ -152,8 +155,8 @@ export default function Home(props) {
 
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
+  const autenticado = false
   const token = cookies.USER_TOKEN
-  
   console.log('Token decodificado', jwt.decode(token))
 
   const { isAuthenticated } = await fetch('http://alurakut.vercel.app/api/auth', {
@@ -166,9 +169,12 @@ export async function getServerSideProps(context) {
 
   if (!isAuthenticated) {
     return {
+      props: {
+        autenticado
+      },
       redirect: {
         destination: '/login',
-        permanent: false
+        permanent: false,
       }
     }
   }

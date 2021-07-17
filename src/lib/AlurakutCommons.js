@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import NextLink from 'next/link';
+import { destroyCookie } from 'nookies'
+import router, { useRouter } from 'next/router'
 
 const BASE_URL = 'http://alurakut.vercel.app/';
 const v = '1';
@@ -16,18 +18,26 @@ function Link({ href, children, ...props }) {
   )
 }
 
+function logout() {
+  destroyCookie(null, 'USER_TOKEN')
+  router.push('/login')
+}
+
 // ================================================================================================================
 // Menu
 // ================================================================================================================
 export function AlurakutMenu({ githubUser }) {
   const [isMenuOpen, setMenuState] = React.useState(false);
+
+
+
   return (
     <AlurakutMenu.Wrapper isMenuOpen={isMenuOpen}>
       <div className="container">
         <AlurakutMenu.Logo src={`${BASE_URL}/logo.svg`} />
 
         <nav style={{ flex: 1 }}>
-          {[{ name: 'Inicio', slug: '/'}, {name: 'Amigos', slug: '/amigos'}, {name: 'Comunidades', slug: '/comunidades'}].map((menuItem) => (
+          {[{ name: 'Inicio', slug: '/'}, { name: 'Amigos', slug: '/amigos' }, { name: 'Comunidades', slug: '/comunidades' }].map((menuItem) => (
             <Link key={`key__${menuItem.name.toLocaleLowerCase()}`} href={`${menuItem.slug.toLocaleLowerCase()}`}>
               {menuItem.name}
             </Link>
@@ -35,7 +45,7 @@ export function AlurakutMenu({ githubUser }) {
         </nav>
 
         <nav>
-          <a href={`/logout`}>
+          <a onClick={logout.bind(this)}>
             Sair
           </a>
           <div>
@@ -54,7 +64,9 @@ export function AlurakutMenu({ githubUser }) {
 }
 AlurakutMenu.Wrapper = styled.header`
   width: 100%;
-  background-color: #308BC5;
+  background-color: #0B0101;
+  border-bottom: 3px solid #5FE0F9;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 
   .alurakutMenuProfileSidebar {
     background: white;
@@ -96,7 +108,7 @@ AlurakutMenu.Wrapper = styled.header`
   }
 
   .container {
-    background-color: #128AD6;
+    background-color: #0B0101;
     padding: 7px 16px;
     max-width: 1110px;
     margin: auto;
@@ -131,7 +143,7 @@ AlurakutMenu.Wrapper = styled.header`
         text-decoration: none;
         &:after {
           content: " ";
-          background-color: #5292C1;
+          background-color: #AFAFAF;
           display: block;
           position: absolute;
           width: 1px;
@@ -145,7 +157,7 @@ AlurakutMenu.Wrapper = styled.header`
     }
     input {
       color: #ffffff;
-      background: #5579A1;
+      background: #9B58B6;
       padding: 10px 42px;
       border: 0;
       background-image: url(${`${BASE_URL}/icons/search.svg`});
@@ -195,31 +207,31 @@ export function AlurakutProfileSidebarMenuDefault() {
       <nav>
         <a href="/">
           <img src={`${BASE_URL}/icons/user.svg`} />
-            Perfil
-          </a>
+          Perfil
+        </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/book.svg`} />
-            Recados
-          </a>
+          Recados
+        </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/camera.svg`} />
-            Fotos
-          </a>
+          Fotos
+        </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/sun.svg`} />
-            Depoimentos
-          </a>
+          Depoimentos
+        </a>
       </nav>
       <hr />
       <nav>
         <a href="/">
           <img src={`${BASE_URL}/icons/plus.svg`} />
-            GitHub Trends
-          </a>
-        <a href="/logout">
+          GitHub Trends
+        </a>
+        <a onClick={logout.bind(this)}>
           <img src={`${BASE_URL}//icons/logout.svg`} />
-            Sair
-          </a>
+          Sair
+        </a>
       </nav>
     </AlurakutProfileSidebarMenuDefault.Wrapper>
   )
@@ -342,6 +354,7 @@ const AlurakutLoginScreen = css`
 
 
   .loginScreen {
+    
     padding: 16px;
     max-width: 1110px;
     display: grid;
@@ -360,6 +373,8 @@ const AlurakutLoginScreen = css`
               "footerArea footerArea";
     }
     .logoArea {
+      border: 3px solid #5FE0F9;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
       grid-area: logoArea;
       background-color: var(--backgroundTertiary);
       border-radius: var(--commonRadius);
@@ -390,11 +405,14 @@ const AlurakutLoginScreen = css`
       }
     }
     .formArea {
+      
       grid-area: formArea;
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
       .box {
+        border: 3px solid #5FE0F9;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -418,9 +436,14 @@ const AlurakutLoginScreen = css`
         p {
           font-size: 14px;
         }
+
+        .avisoPreencher {
+          color: #F33535;
+        }
+
         a {
           text-decoration: none;
-          color: var(--colorPrimary);
+          color: #0B0101;
         }
         input {
           width: 100%;
@@ -430,7 +453,7 @@ const AlurakutLoginScreen = css`
           background-color: var(--backgroundTertiary);
           border-radius: var(--commonRadius);
           margin-top: 24px;
-          margin-bottom: 16px;
+          margin-bottom: 3px;
         }
         button {
           width: 100%;
@@ -438,14 +461,18 @@ const AlurakutLoginScreen = css`
           border: 0;
           padding: 12px;
           border-radius: var(--commonRadius);
-          background-color: var(--colorPrimary);
+          background-color: #0B0101;
           color: var(--textSecondaryColor);
+          margin-top: 16px;
         }
       }
     }
     .footerArea {
+      border: 3px solid #5FE0F9;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+      color: white;
       grid-area: footerArea;
-      background-color: var(--backgroundQuarternary);
+      background-color: #0B0101;
       border-radius: var(--commonRadius);
       padding: 8px;
       p {
@@ -453,7 +480,7 @@ const AlurakutLoginScreen = css`
         text-align: center;
         a {
           text-decoration: none;
-          color: var(--colorPrimary);
+          color: #B3B3B3;
         }
       }
     }
