@@ -155,19 +155,8 @@ export default function Home(props) {
   )
 }
 
-Home.getInitalProps = async(context) => {
-  const { req, query, res, asPath, pathname } = context;
-  if (req) {
-      let host = req.headers.host // will give you localhost:3000
-      console.log(req.headers)
-    }
- }
-
 export async function getServerSideProps(context) {
-  
-
   const cookies = nookies.get(context)
-  const autenticado = false
   const token = cookies.USER_TOKEN
   console.log('Token decodificado', jwt.decode(token))
 

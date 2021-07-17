@@ -2,6 +2,7 @@ import React from 'react';
 // Hook do NextJS:
 import { useRouter } from 'next/router'
 import nookies from 'nookies'
+import jwt from 'jsonwebtoken'
 
 export default function LoginScreen(props) {
     const router = useRouter()
@@ -39,6 +40,7 @@ export default function LoginScreen(props) {
                                 })
                                 router.push('/')
                             })
+                            
                     }
                     }}>
                         <p>
@@ -56,7 +58,7 @@ export default function LoginScreen(props) {
                         <p className='avisoPreencher'>
                             {
                                 githubUser.length === 0
-                                    ? 'Preencha o campo acima'
+                                    ? 'Preencha o campo acima com um usuário válido'
                                     : ''
                             }
                         </p>
