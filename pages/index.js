@@ -171,7 +171,7 @@ export async function getServerSideProps(context) {
   const token = cookies.USER_TOKEN
   console.log('Token decodificado', jwt.decode(token))
 
-  const { isAuthenticated } = await fetch(`alurakut-kohl-alpha.vercel.app/api/auth`, {
+  const { isAuthenticated } = await fetch(`https://alurakut-kohl-alpha.vercel.app/api/auth`, {
     headers: {
       Authorization: token
     }
@@ -182,7 +182,7 @@ export async function getServerSideProps(context) {
   if (!isAuthenticated) {
     return {
       redirect: {
-        destination: '/notFound',
+        destination: '/login',
         permanent: false,
       }
     }
