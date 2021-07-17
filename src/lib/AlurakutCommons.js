@@ -29,8 +29,6 @@ function logout() {
 export function AlurakutMenu({ githubUser }) {
   const [isMenuOpen, setMenuState] = React.useState(false);
 
-
-
   return (
     <AlurakutMenu.Wrapper isMenuOpen={isMenuOpen}>
       <div className="container">
@@ -43,7 +41,6 @@ export function AlurakutMenu({ githubUser }) {
             </Link>
           ))}
         </nav>
-
         <nav>
           <a onClick={logout.bind(this)}>
             Sair
@@ -239,7 +236,7 @@ export function AlurakutProfileSidebarMenuDefault() {
 AlurakutProfileSidebarMenuDefault.Wrapper = styled.div`
   a {
     font-size: 12px;
-    color: #2E7BB4;
+    color: #505050;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -289,7 +286,7 @@ export function OrkutNostalgicIconSet(props) {
             </span>
             <span className="OrkutNostalgicIconSet__iconComplex" className="OrkutNostalgicIconSet__number" style={{ gridArea: 'number' }}>
               {[0, 1, 2].map((_, index) => {
-                const isHeartActive = index <= (total + 1);
+                const isHeartActive = index <= (total + -1);
                 return <img key={`orkut__icon_set__${slug}_img_${index}`} src={`https://alurakut.vercel.app/icons/${icon}.svg`} style={{ marginRight: '2px', opacity: isHeartActive ? 1 : '0.5' }} />
               })}
             </span>
@@ -437,6 +434,12 @@ const AlurakutLoginScreen = css`
           font-size: 14px;
         }
 
+        .notFound{
+          margin-top: 10px;
+          margin-bottom: -10px;
+          color: #F33535;
+        }
+
         .avisoPreencher {
           color: #F33535;
         }
@@ -448,7 +451,7 @@ const AlurakutLoginScreen = css`
         input {
           width: 100%;
           display: block;
-          border: 1px solid var(--textQuarternaryColor);
+          border: 3px solid var(--textQuarternaryColor);
           padding: 12px;
           background-color: var(--backgroundTertiary);
           border-radius: var(--commonRadius);

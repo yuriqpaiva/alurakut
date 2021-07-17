@@ -41,9 +41,11 @@ export default function LoginScreen(props) {
                             })
                     }
                     }}>
+                        
                         <p>
                             Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
                         </p>
+                        <h4 className='notFound'>Usuário não encontrado!</h4>
                         <input
                             placeholder="Usuário"
                             value={githubUser}

@@ -82,7 +82,7 @@ export default function Home(props) {
         <div className='welcomeArea' style={{ gridArea: 'welcomeArea' }}>
           <Box>
             <h1 className='title'>
-              Bem vindo(a)
+              Bem-vindo(a)
             </h1>
             <OrkutNostalgicIconSet />
           </Box>
@@ -98,7 +98,7 @@ export default function Home(props) {
               const comunidade = {
                 title: dadosDoForm.get('title'),
                 imageUrl: dadosDoForm.get('image'),
-                creatorSlug: githubUser
+                creatorSlug: props.githubUser
               }
               fetch('/api/comunidades', {
                 method: 'POST',
@@ -154,12 +154,13 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps(context) {
+  
   const cookies = nookies.get(context)
   const autenticado = false
   const token = cookies.USER_TOKEN
   console.log('Token decodificado', jwt.decode(token))
 
-  const { isAuthenticated } = await fetch('http://alurakut.vercel.app/api/auth', {
+  const { isAuthenticated } = await fetch('http://localhost:3000/api/auth', {
     headers: {
       Authorization: token
     }
@@ -169,11 +170,8 @@ export async function getServerSideProps(context) {
 
   if (!isAuthenticated) {
     return {
-      props: {
-        autenticado
-      },
       redirect: {
-        destination: '/login',
+        destination: '/notFound',
         permanent: false,
       }
     }
