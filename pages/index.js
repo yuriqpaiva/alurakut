@@ -163,7 +163,6 @@ Home.getInitalProps = async(context) => {
     }
  }
 
-
 export async function getServerSideProps(context) {
   
 
@@ -172,7 +171,7 @@ export async function getServerSideProps(context) {
   const token = cookies.USER_TOKEN
   console.log('Token decodificado', jwt.decode(token))
 
-  const { isAuthenticated } = await fetch(`http://https://alurakut-kohl-alpha.vercel.app/api/auth`, {
+  const { isAuthenticated } = await fetch(`alurakut-kohl-alpha.vercel.app/api/auth`, {
     headers: {
       Authorization: token
     }
