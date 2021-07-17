@@ -14,6 +14,7 @@ import router from 'next/router'
 import { destroyCookie } from 'nookies'
 
 export default function Home(props) {
+ 
   const [githubUser, setGithubUser] = React.useState([props.githubUser])
   const [comunidades, setComunidades] = React.useState([])
   // const comunidades = ['Alurakut']
@@ -113,6 +114,7 @@ export default function Home(props) {
                   const comunidadesAtualizadas = [comunidade, ...comunidades]
                   setComunidades(comunidadesAtualizadas)
                 })
+                
             }}>
               <div>
                 <input
@@ -153,14 +155,24 @@ export default function Home(props) {
   )
 }
 
+Home.getInitalProps = async(context) => {
+  const { req, query, res, asPath, pathname } = context;
+  if (req) {
+      let host = req.headers.host // will give you localhost:3000
+      console.log(req.headers)
+    }
+ }
+
+
 export async function getServerSideProps(context) {
   
+
   const cookies = nookies.get(context)
   const autenticado = false
   const token = cookies.USER_TOKEN
   console.log('Token decodificado', jwt.decode(token))
 
-  const { isAuthenticated } = await fetch('http://localhost:3000/api/auth', {
+  const { isAuthenticated } = await fetch(`http://https://alurakut-kohl-alpha.vercel.app/api/auth`, {
     headers: {
       Authorization: token
     }
