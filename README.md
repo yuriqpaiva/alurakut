@@ -14,4 +14,4 @@ Esse projeto não possui um sistema de versionamento
 Crie uma fork para contribuir com o projeto :)
 
 ## License
-[MIT License](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md) © [Afonso Pacifer](http://afonsopacifer.com/)@ Yuri Paiva
+[MIT License](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md) © Yuri Paiva
