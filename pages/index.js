@@ -120,7 +120,7 @@ export default function Home(props) {
                 />
               </div>
               <button>
-                Criar comunidade
+                Criar Comunidade
               </button>
             </form>
           </Box>

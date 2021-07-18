@@ -74,7 +74,7 @@ export function Scraps(props) {
                         placeholder='Mensagem'
                         type='text'
                         name='message' />
-                    <button>Enviar</button>
+                    <button>Enviar Recado</button>
                 </form>
 
             </Box>
