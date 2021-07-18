@@ -38,7 +38,7 @@ export const Box = styled.div`
     border-color: transparent;
     border-bottom-color: #ECF2FA;
   }
-  input {
+  input, textarea{
     width: 100%;
     background-color: #F4F4F4;
     color: #333333;
@@ -47,9 +47,15 @@ export const Box = styled.div`
     margin-bottom: 14px;
     border-radius: 10000px;
     ::placeholder {
-      color: #333333;
+      color: #717171;
       opacity: 1;
     }
+  }
+  textarea {
+    font-family: sans-serif ;
+    resize: vertical;
+    max-block-size: 140px;
+    height: 100px;
   }
   button {
     border: 0;

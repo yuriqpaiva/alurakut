@@ -522,7 +522,7 @@ export const AlurakutStyles = css`
       opacity: .5;
     }
   }
-  input {
+  input, textarea {
     transition: .3s;
     outline: 0;
     &:disabled {

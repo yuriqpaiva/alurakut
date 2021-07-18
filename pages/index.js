@@ -1,32 +1,20 @@
 import React from 'react'
 import nookies from 'nookies'
 import jwt from 'jsonwebtoken'
-import styled from 'styled-components'
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
 import { AlurakutMenu, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons'
 import { Fragment } from 'react'
 import { ProfileSidebar } from '../src/components/ProfileSidebar'
-import { FormularioComunidade } from '../src/components/FormularioComunidade'
 import { Listagem } from '../src/components/Listagem'
-import { comunidadesArray } from '../src/assets/dados/comunidadesArray'
-import router from 'next/router'
-import { destroyCookie } from 'nookies'
+import { Scraps } from '../src/components/Scraps'
 
 export default function Home(props) {
  
   const [githubUser, setGithubUser] = React.useState([props.githubUser])
   const [comunidades, setComunidades] = React.useState([])
   // const comunidades = ['Alurakut']
-  const pessoasFavoritas = [
-    'juunegreiros',
-    'omariosouto',
-    'peas',
-    'rafaballerini',
-    'marcobrunodev',
-    'felipefialho',
-    'felipealves'
-  ]
+
   const [seguindo, setSeguindo] = React.useState([])
   const [seguidores, setSeguidores] = React.useState([])
   // 0 - Pegar o array de dados do GitHub
@@ -131,23 +119,16 @@ export default function Home(props) {
                   aria-label='Insira uma URL de imagem para usarmos como capa'
                 />
               </div>
-              {/* <div>
-                <input
-                  placeholder='Insira a URL da sua comunidade'
-                  name='linkComunidade'
-                  aria-label='Insira a URL da sua comunidade'
-                />
-              </div> */}
               <button>
                 Criar comunidade
               </button>
             </form>
           </Box>
+          <Scraps/>
         </div>
         <div className='profileRelationsArea' style={{ gridArea: 'profileRelationsArea' }}>
-          <Listagem title={'Seguidores'} array={seguidores} setGithubUser={setGithubUser} setSeguidores={setSeguidores}/>
-          <Listagem title={'Seguindo'} array={seguindo} setGithubUser={setGithubUser} setSeguindo={setSeguindo.bind(this)}
-          seguindo={seguindo}/>
+          <Listagem title={'Seguidores'} array={seguidores} setGithubUser={setGithubUser}/>
+          <Listagem title={'Seguindo'} array={seguindo} setGithubUser={setGithubUser}/>
           <Listagem title={'Comunidades'} array={comunidades} />
         </div>
       </MainGrid>
@@ -181,6 +162,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       githubUser
-    }, // will be passed to the page component as props
+    }, 
   }
 }
