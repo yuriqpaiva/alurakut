@@ -10,14 +10,24 @@ import { Listagem } from '../src/components/Listagem'
 import { Scraps } from '../src/components/Scraps'
 
 export default function Home(props) {
- 
+
   const [githubUser, setGithubUser] = React.useState([props.githubUser])
   const [comunidades, setComunidades] = React.useState([])
-  // const comunidades = ['Alurakut']
-
   const [seguindo, setSeguindo] = React.useState([])
   const [seguidores, setSeguidores] = React.useState([])
-  // 0 - Pegar o array de dados do GitHub
+  const [msgComunidade, setMsgComunidade] = React.useState(false)
+
+  const [inputTitle, setInputTitle] = React.useState()
+  const handleInputTitle = (e) => {
+    setInputTitle(e.target.value)
+    console.log(inputTitle)
+  }
+
+  const [inputImageURL, setImageURL] = React.useState()
+  const handleInputImageURL = (e) => {
+    setImageURL(e.target.value)
+  }
+
   React.useEffect(function () {
     // GET
     fetch(`https://api.github.com/users/${githubUser}/followers`)
@@ -79,10 +89,14 @@ export default function Home(props) {
             <h2 className='subTitle'>Adicionar Comunidade</h2>
             <form onSubmit={function handleCriarComunidade(e) {
               e.preventDefault()
-              let random = Math.floor(Math.random() * (200 - 10)) + 10
+              let random = Math.floor(Math.random() * (180 - 10)) + 10
               const dadosDoForm = new FormData(e.target) // Dados do Form
               if (dadosDoForm.get('image') === '') {
+                setMsgComunidade(true)
                 dadosDoForm.set('image', `https://picsum.photos/id/${random}/200/300`)
+              }
+              if (dadosDoForm.get('title') === '') {
+                dadosDoForm.set('title', `Untitled`)
               }
               const comunidade = {
                 title: dadosDoForm.get('title'),
@@ -102,33 +116,43 @@ export default function Home(props) {
                   const comunidadesAtualizadas = [comunidade, ...comunidades]
                   setComunidades(comunidadesAtualizadas)
                 })
-                
+              setInputTitle('')
+              setImageURL('')
             }}>
               <div>
                 <input
+                  onChange={handleInputTitle}
                   placeholder='Qual vai ser o nome da sua comunidade?'
                   name='title'
                   aria-label='Qual vai ser o nome da sua comunidade?'
                   type='text'
+                  value={inputTitle}
                 />
               </div>
               <div>
                 <input
+                  onChange={handleInputImageURL}
                   placeholder='Insira uma URL de imagem para usarmos como capa'
                   name='image'
                   aria-label='Insira uma URL de imagem para usarmos como capa'
+                  value={inputImageURL}
                 />
               </div>
+              <p className='msgComunidade'>
+                {
+                  msgComunidade ? '*Uma imagem automática foi gerada para você' : ''
+                }
+              </p>
               <button>
                 Criar Comunidade
               </button>
             </form>
           </Box>
-          <Scraps githubUser={props.githubUser}/>
+          <Scraps githubUser={props.githubUser} />
         </div>
         <div className='profileRelationsArea' style={{ gridArea: 'profileRelationsArea' }}>
-          <Listagem title={'Seguidores'} array={seguidores} setGithubUser={setGithubUser}/>
-          <Listagem title={'Seguindo'} array={seguindo} setGithubUser={setGithubUser}/>
+          <Listagem title={'Seguidores'} array={seguidores} setGithubUser={setGithubUser} />
+          <Listagem title={'Seguindo'} array={seguindo} setGithubUser={setGithubUser} />
           <Listagem title={'Comunidades'} array={comunidades} />
         </div>
       </MainGrid>
@@ -162,6 +186,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       githubUser
-    }, 
+    },
   }
 }

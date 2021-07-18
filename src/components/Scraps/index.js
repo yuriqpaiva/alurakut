@@ -3,9 +3,21 @@ import { Fragment } from 'react'
 import React from 'react'
 import { Top, Comment, InsertRecado } from './comment'
 
+
+
 export function Scraps(props) {
 
     const [scraps, setScraps] = React.useState([])
+
+    const [inputAssunto, setInputAssunto] = React.useState('')
+    const handleInputAssunto = (e) => {
+        setInputAssunto(e.target.value)
+    }
+
+    const [inputMensagem, setInputMensagem] = React.useState('')
+    const handleInputMensagem = (e) => {
+        setInputMensagem(e.target.value)
+    }
 
     React.useEffect(() => {
         fetch(`https://graphql.datocms.com/`, {
@@ -30,13 +42,20 @@ export function Scraps(props) {
                 const scrapsVindasDoDato = respostaCompleta.data.allScraps
                 // console.log(respostaCompleta)
                 setScraps(scrapsVindasDoDato)
-         })
+            })
     })
-
 
     const handleSubmitScraps = (e) => {
         e.preventDefault()
+
         const dadosDoForm = new FormData(e.target)
+        if (dadosDoForm.get('title') === '') {
+            dadosDoForm.set('title', 'Sem Assunto')
+        }
+
+        if (dadosDoForm.get('message') === '') {
+            dadosDoForm.set('message', 'Mensagem Vazia')
+        }
         const recado = {
             title: dadosDoForm.get('title'),
             message: dadosDoForm.get('message'),
@@ -55,6 +74,8 @@ export function Scraps(props) {
                 const scrapsAtualizados = [scrap, ...scraps]
                 setScraps(scrapsAtualizados)
             })
+        setInputAssunto('')
+        setInputMensagem('')
     }
 
     return (
@@ -67,13 +88,20 @@ export function Scraps(props) {
 
                 <form onSubmit={handleSubmitScraps}>
                     <input
+                        onChange={handleInputAssunto}
                         placeholder='Assunto'
                         type='text'
-                        name='title' />
+                        name='title'
+                        value={inputAssunto}
+                    />
+
                     <textarea
+                        onChange={handleInputMensagem}
                         placeholder='Mensagem'
                         type='text'
-                        name='message' />
+                        name='message'
+                        value={inputMensagem}
+                    />
                     <button>Enviar Recado</button>
                 </form>
 
@@ -84,7 +112,7 @@ export function Scraps(props) {
                     {
                         scraps.map((itemAtual) => {
                             return (
-                                <li className='comments'>
+                                <li className='comments' key={itemAtual.id}>
                                     <Top>
                                         <img src={`https://github.com/${itemAtual.creatorSlug}.png`} />
                                         <a>@{itemAtual.creatorSlug}</a>
@@ -102,3 +130,4 @@ export function Scraps(props) {
         </Fragment>
     )
 }
+

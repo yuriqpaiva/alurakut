@@ -32,6 +32,14 @@ export const Box = styled.div`
     color: #333333;
     margin-bottom: 20px;
   }
+
+  .msgComunidade {
+    color: #559E22;
+    font-size: 15px;
+    margin-top: -12px;
+    margin-left: 10px;
+  }
+
   hr {
     margin-top: 12px;
     margin-bottom: 8px;
@@ -63,6 +71,7 @@ export const Box = styled.div`
     color: #FFFFFF;
     border-radius: 10000px;
     background-color: #0B0101;
+    margin-top: 12px;
   }
   ul {
     list-style: none;
@@ -76,6 +85,13 @@ export const Box = styled.div`
     padding: 16px;
   }
   
+  .success {
+    color: #559E22;
+    font-size: 15px;
+    margin-top: -12px;
+    margin-left: 30px;
+  
+  }
   
 `;
 

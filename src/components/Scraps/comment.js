@@ -10,6 +10,7 @@ export const Top = styled.div`
     background-position: center center;
     height: 40px;
     position: relative;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
     border-radius: 50%;
     }
 
@@ -21,7 +22,7 @@ export const Top = styled.div`
 export const Comment = styled.div` 
     margin-top: 10px;
     h4 {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 500;
     }
     p {
@@ -40,6 +41,7 @@ export const InsertRecado = styled.div`
     background-position: center center;
     height: 30px;
     position: relative;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
     border-radius: 50%;
     }
     a {
