@@ -1,5 +1,4 @@
 # Alurakut
-[![Série](https://img.shields.io/badge/DevSoutinho-Flappy%20Bird-orange)]
 [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md)
 
 > Projeto feito durante a 3º imersão React da Alura.
