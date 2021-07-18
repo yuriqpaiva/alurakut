@@ -36,6 +36,7 @@ export const InsertRecado = styled.div`
     display: flex;
     
     img {
+    margin-top: -4px;
     margin-left: 7px;
     object-fit: cover;
     background-position: center center;
