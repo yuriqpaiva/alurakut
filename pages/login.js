@@ -45,7 +45,7 @@ export default function LoginScreen(props) {
                         }
                         setTimeout(() => {
                             setMensagem(true)
-                        }, 2000);
+                        }, 3000);
                     }}>
                         <p>
                             Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
