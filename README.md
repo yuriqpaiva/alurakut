@@ -1,20 +1,22 @@
-# Open Source Boilerplate
-
+# Alurakut
+![Série](https://img.shields.io/badge/Yuri%20Paiva-Alurakut-pink)
 [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md)
 
-> :rocket: A template to help you create open source projects more organized.
+<p align="left">
+  <img alt="Logo do projeto" src="https://alurakut.vercel.app/logo.svg" />
+</p>
+
+> Projeto feito durante a 3º imersão React da Alura.
+> 
+> Vários desafios foram implementados no Projeto.
 
 ## Versioning
 
-To keep better organization of releases we follow the [Semantic Versioning 2.0.0](http://semver.org/) guidelines.
+Esse projeto não possui um sistema de versionamento
 
 ## Contributing
-Find on our [roadmap](https://github.com/afonsopacifer/open-source-boilerplate/issues/1) the next steps of the project ;)
-<br>
-Want to contribute? [Follow these recommendations](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/CONTRIBUTING.md).
 
-## History
-See [Releases](https://github.com/afonsopacifer/open-source-boilerplate/releases) for detailed changelog.
+Crie uma fork para contribuir com o projeto :)
 
 ## License
-[MIT License](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md) © [Afonso Pacifer](http://afonsopacifer.com/)
+[MIT License](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md) © Yuri Paiva
