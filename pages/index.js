@@ -71,7 +71,7 @@ export default function Home(props) {
         <div className='welcomeArea' style={{ gridArea: 'welcomeArea' }}>
           <Box>
             <h1 className='title'>
-              Bem-vindo(a)
+              Bem-vindo(a), {props.githubUser}
             </h1>
             <OrkutNostalgicIconSet />
           </Box>
@@ -124,7 +124,7 @@ export default function Home(props) {
               </button>
             </form>
           </Box>
-          <Scraps/>
+          <Scraps githubUser={props.githubUser}/>
         </div>
         <div className='profileRelationsArea' style={{ gridArea: 'profileRelationsArea' }}>
           <Listagem title={'Seguidores'} array={seguidores} setGithubUser={setGithubUser}/>

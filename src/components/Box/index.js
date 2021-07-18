@@ -64,6 +64,19 @@ export const Box = styled.div`
     border-radius: 10000px;
     background-color: #0B0101;
   }
+  ul {
+    list-style: none;
+  }
+
+  .comments{
+    margin-top: 20px;
+    background-color: #EAE45F;
+    box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.1);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    padding: 16px;
+  }
+  
+  
 `;
 
 export default Box
