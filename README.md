@@ -1,7 +1,11 @@
 # Alurakut
 ![Série](https://img.shields.io/badge/Yuri%20Paiva-Alurakut-pink)
 [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md)
-[**DEMO**](https://alurakut.vercel.app/logo.svg)
+
+<p align="center">
+  <img alt="Logo do projeto" src="https://alurakut.vercel.app/logo.svg" />
+</p>
+
 > Projeto feito durante a 3º imersão React da Alura.
 > 
 > Vários desafios foram implementados no Projeto.
