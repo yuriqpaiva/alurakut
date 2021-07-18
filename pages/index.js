@@ -8,6 +8,7 @@ import { Fragment } from 'react'
 import { ProfileSidebar } from '../src/components/ProfileSidebar'
 import { Listagem } from '../src/components/Listagem'
 import { Scraps } from '../src/components/Scraps'
+import Head from 'next/head'
 
 export default function Home(props) {
 
@@ -72,7 +73,12 @@ export default function Home(props) {
   // que pegamos do GitHub
 
   return (
+    
     <Fragment>
+      <Head>
+      <title>Alurakut</title>
+      <link rel='icon' href='https://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Orkut-icon.png'></link>
+    </Head>
       <AlurakutMenu githubUser={githubUser} />
       <MainGrid>
         <div className='profileArea' style={{ gridArea: 'profileArea' }}>

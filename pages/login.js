@@ -3,6 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/router'
 import nookies from 'nookies'
 import jwt from 'jsonwebtoken'
+import Head from 'next/head'
 
 export default function LoginScreen(props) {
     const [mensagem, setMensagem] = React.useState(false)
@@ -10,7 +11,12 @@ export default function LoginScreen(props) {
     const router = useRouter()
     const [githubUser, setGithubUser] = React.useState([])
     return (
+
         <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Head>
+                <title>Alurakut</title>
+                <link rel='icon' href='https://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Orkut-icon.png'></link>
+            </Head>
             <div className="loginScreen">
                 <section className="logoArea">
                     <img src="https://alurakut.vercel.app/logo.svg" />
