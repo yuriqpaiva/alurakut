@@ -2,7 +2,8 @@
 
 [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md)
 
-> Projeto feito durante a 3º imersão React da Alura
+> Projeto feito durante a 3º imersão React da Alura.
+> Vários desafios foram implementados no Projeto.
 
 ## Versioning
 
