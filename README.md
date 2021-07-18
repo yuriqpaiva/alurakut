@@ -2,7 +2,7 @@
 ![Série](https://img.shields.io/badge/Yuri%20Paiva-Alurakut-pink)
 [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md)
 
-<p align="center">
+<p align="left">
   <img alt="Logo do projeto" src="https://alurakut.vercel.app/logo.svg" />
 </p>
 
