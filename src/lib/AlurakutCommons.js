@@ -435,6 +435,7 @@ const AlurakutLoginScreen = css`
         }
 
         .notFound{
+          font-size: 15px;
           margin-top: 10px;
           margin-bottom: -10px;
           color: #F33535;

@@ -5,6 +5,8 @@ import nookies from 'nookies'
 import jwt from 'jsonwebtoken'
 
 export default function LoginScreen(props) {
+    const [mensagem, setMensagem] = React.useState(false)
+
     const router = useRouter()
     const [githubUser, setGithubUser] = React.useState([])
     return (
@@ -20,32 +22,41 @@ export default function LoginScreen(props) {
 
                 <section className="formArea">
                     <form className="box" onSubmit={async (infosDoEvento) => {
-                        
+
                         infosDoEvento.preventDefault() // Tirar o comportamento padrão do navegador de atualizar a página ao clicar para submeter, garantindo o comportamento de SPA. 
                         console.log('Usuário: ', githubUser)
-                        if (infosDoEvento.target[0].value.length > 0){
-                        fetch('https://alurakut.vercel.app/api/login', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ githubUser: githubUser })
-                        })
-                            .then(async (response) => {
-                                const dadosResponse = await response.json()
-                                const token = dadosResponse.token
-                                nookies.set(null, 'USER_TOKEN', token, {
-                                    path: '/',
-                                    maxAge: 86400 * 7
-                                })
-                                router.push('/')
+                        if (infosDoEvento.target[0].value.length > 0) {
+                            fetch('https://alurakut.vercel.app/api/login', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ githubUser: githubUser })
                             })
-                            
-                    }
+                                .then(async (response) => {
+                                    const dadosResponse = await response.json()
+                                    const token = dadosResponse.token
+                                    nookies.set(null, 'USER_TOKEN', token, {
+                                        path: '/',
+                                        maxAge: 86400 * 7
+                                    })
+                                    router.push('/')
+                                })
+                        }
+                        setTimeout(() => {
+                            setMensagem(true)
+                        }, 1100);
                     }}>
                         <p>
                             Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
                         </p>
+                        <h4 className='notFound'>
+                            {
+                                mensagem
+                                    ? 'O usuário que foi inserido é inválido'
+                                    : ''
+                            }
+                        </h4>
                         <input
                             placeholder="Usuário"
                             value={githubUser}
@@ -58,11 +69,11 @@ export default function LoginScreen(props) {
                         <p className='avisoPreencher'>
                             {
                                 githubUser.length === 0
-                                    ? 'Preencha o campo acima com um usuário válido'
+                                    ? '*Campo obrigatório'
                                     : ''
                             }
                         </p>
-                        
+
                         <button type="submit">
                             Login
                         </button>
