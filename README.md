@@ -2,7 +2,7 @@
 
 [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md)
 
-> :rocket: A template to help you create open source projects more organized.
+> :Projeto feito durante a imersão React da Alura
 
 ## Versioning
 
