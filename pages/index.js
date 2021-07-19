@@ -21,7 +21,6 @@ export default function Home(props) {
   const [inputTitle, setInputTitle] = React.useState()
   const handleInputTitle = (e) => {
     setInputTitle(e.target.value)
-    console.log(inputTitle)
   }
 
   const [inputImageURL, setImageURL] = React.useState()
@@ -169,7 +168,7 @@ export default function Home(props) {
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
   const token = cookies.USER_TOKEN
-  console.log('Token decodificado', jwt.decode(token))
+  // console.log('Token decodificado', jwt.decode(token))
 
   const { isAuthenticated } = await fetch(`https://alurakut-kohl-alpha.vercel.app/api/auth`, {
     headers: {
@@ -177,7 +176,7 @@ export async function getServerSideProps(context) {
     }
   })
     .then((response) => response.json())
-  console.log(isAuthenticated)
+  // console.log(isAuthenticated)
 
   if (!isAuthenticated) {
     return {

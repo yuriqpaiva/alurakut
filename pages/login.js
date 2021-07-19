@@ -30,7 +30,7 @@ export default function LoginScreen(props) {
                     <form className="box" onSubmit={async (infosDoEvento) => {
 
                         infosDoEvento.preventDefault() // Tirar o comportamento padrão do navegador de atualizar a página ao clicar para submeter, garantindo o comportamento de SPA. 
-                        console.log('Usuário: ', githubUser)
+                        
                         if (infosDoEvento.target[0].value.length > 0) {
                             fetch('https://alurakut.vercel.app/api/login', {
                                 method: 'POST',
@@ -69,7 +69,6 @@ export default function LoginScreen(props) {
                             onChange={(evento) => {
                                 // console.log(evento.target.value)
                                 setGithubUser(evento.target.value)
-                                console.log(githubUser)
                             }}
                         />
                         <p className='avisoPreencher'>
