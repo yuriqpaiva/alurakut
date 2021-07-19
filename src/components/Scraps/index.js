@@ -23,7 +23,7 @@ export function Scraps(props) {
         fetch(`https://graphql.datocms.com/`, {
             method: 'POST',
             headers: {
-                'Authorization': '1dd555e102993f65efed1f903a2744',
+                'Authorization': 'd2fe1407ccc10ee83c22d653e02d8c',
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },

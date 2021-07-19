@@ -2,7 +2,7 @@ import { SiteClient } from 'datocms-client'
 
 export default async function recebedorDeRequests(req, res) {
     if (req.method === 'POST') {
-        const TOKEN = '15c3f4da9e482ec61e217f8c6c8a0e'
+        const TOKEN = '1e3c968c1d1c25d649255192fc63ba'
         const client = new SiteClient(TOKEN);
 
         // Validar os dados, antes de sair cadastrando
