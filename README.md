@@ -1,22 +1,58 @@
-# Alurakut
-![Série](https://img.shields.io/badge/Yuri%20Paiva-Alurakut-pink)
-[![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md)
+#  Alurakut &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-green.svg) ![framework](https://img.shields.io/badge/framework-nextjs-black) ![language](https://img.shields.io/badge/language-typescript-blue) ![style](https://img.shields.io/badge/style-styledcomponents-ff69b4)
 
-<p align="left">
-  <img alt="Logo do projeto" src="https://alurakut.vercel.app/logo.svg" />
-</p>
+<div align="center">
+  <img align="center" src="./public/app.png" />
+</div>
 
-> Projeto feito durante a 3º imersão React da Alura.
-> 
-> Vários desafios foram implementados no Projeto.
+<br/>
 
-## Versioning
 
-Esse projeto não possui um sistema de versionamento
+## 💡 Introduction
+Web application - Alurakut 
+1. Gets it's infomation of Github API
+2. Leave comments on user profile
+3. See your followers 
 
-## Contributing
+<br/>
 
-Crie uma fork para contribuir com o projeto :)
+## 🖥 Pre-requisites:
 
-## License
-[MIT License](https://github.com/afonsopacifer/open-source-boilerplate/blob/master/LICENSE.md) © Yuri Paiva
+- NodeJS
+
+<br/>
+
+## 💾 How to Install Dependencies?
+
+### Using NPM:
+
+```
+  npm install
+```
+
+### Using Yarn:
+
+```
+  yarn
+```
+
+<br/>
+
+## 🚀 How to Run it?
+
+### Using NPM:
+
+```
+  npm start
+```
+
+### Using Yarn:
+
+```
+  yarn start
+```
+
+<br/>
+
+## © License
+
+MIT License © Yuri Paiva
