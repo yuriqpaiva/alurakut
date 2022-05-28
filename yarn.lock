@@ -769,7 +769,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-datocms-client@^3.4.11:
+datocms-client@^3.5.21:
   version "3.5.21"
   resolved "https://registry.yarnpkg.com/datocms-client/-/datocms-client-3.5.21.tgz#ec3e41ce0143cd7ac3a400c89a53cda47cab3428"
   integrity sha512-CnJn5xQKExSozf8lCZEWkebJ7bdNpjlGXBqYr9sLYtyjDEW6GBRQeqJq5XpwCOd84Q8146nbT8iVKqi2u8NtNQ==
