@@ -42,13 +42,13 @@ Web application - Alurakut
 ### Using NPM:
 
 ```
-  npm start
+  npm run dev
 ```
 
 ### Using Yarn:
 
 ```
-  yarn start
+  yarn dev
 ```
 
 <br/>
